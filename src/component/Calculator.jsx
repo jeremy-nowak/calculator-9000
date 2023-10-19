@@ -13,7 +13,6 @@ function Calculator() {
   const [arrayNumb, setArrayNumb] = useState([]);
 
   const handleClick = (value) => {
-    // console.log("🚀 ~ file: Calculator.jsx:12 ~ handleClick ~ value:", value)
     if (value == "=") {
       calculate(operation);
     } else if (value == "C") {
@@ -25,13 +24,18 @@ function Calculator() {
   };
   
   const handleKeyboard = (event) => {
-    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","C"];
+    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","C","Enter"];
     let keyPressed = event.key;
 
     if (validChars.includes(keyPressed)) {
 
-      console.log(keyPressed);
-      updateOperation(keyPressed);
+      if(keyPressed == "Enter"){
+        calculate(operation)
+      }
+      else{
+            console.log(keyPressed);
+            updateOperation(keyPressed);
+      }
     }
   };
 // ----------------------------------------------------------------------------------------------------
@@ -44,7 +48,7 @@ function Calculator() {
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
     };
-  }, [operation]);
+  });
 
 
 
@@ -58,6 +62,10 @@ function Calculator() {
 // -------------------------------------USE EFFECT-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
 
+
+// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------Function-----------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
   // fonction pour set l'opération
 
   const updateOperation = (value) => {
@@ -81,6 +89,10 @@ function Calculator() {
     setResult("0");
     setEaster(false);
   };
+
+// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------Function-----------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
   // const cleanArray = (value) => {
 
