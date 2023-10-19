@@ -19,6 +19,7 @@ function Calculator() {
     } else if (value == "C") {
       clearInput();
     } else {
+      console.log(value)
       updateOperation(value);
     }
   };
@@ -28,8 +29,9 @@ function Calculator() {
     let keyPressed = event.key;
 
     if (validChars.includes(keyPressed)) {
+
       console.log(keyPressed);
-      setArrayNumb((current) => [...current, keyPressed]);
+      updateOperation(keyPressed);
     }
   };
 // ----------------------------------------------------------------------------------------------------
@@ -37,20 +39,21 @@ function Calculator() {
 // ----------------------------------------------------------------------------------------------------
 
   useEffect(() => {
-    // Écoutez les événements de clavier lorsque le composant est monté.
     window.addEventListener("keydown", handleKeyboard);
 
-    // Nettoyez l'écouteur d'événements lorsque le composant est démonté.
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
     };
-  }, []);
+  }, [operation]);
 
-  useEffect(() => {
-    console.log(arrayNumb);
 
-    cleanArray(arrayNumb);
-  }, [arrayNumb]);
+
+  // useEffect(() => {
+
+  //   console.log(arrayNumb);
+  //   cleanArray(arrayNumb);
+  // }, [arrayNumb]);
+
 // ----------------------------------------------------------------------------------------------------
 // -------------------------------------USE EFFECT-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
@@ -79,14 +82,14 @@ function Calculator() {
     setEaster(false);
   };
 
-  const cleanArray = (value) => {
+  // const cleanArray = (value) => {
 
-    let toClean = value;
-    console.log(toClean);
-    // let cleaned = toClean.replace(",", "");
-    // console.log(arrayNumb);
-    // setOperation(cleaned);
-  };
+  //   let toClean = value;
+  //   console.log(toClean);
+  //   // let cleaned = toClean.replace(",", "");
+  //   // console.log(arrayNumb);
+  //   // setOperation(cleaned);
+  // };
 
   return (
     <div className="calculatorDisplay">
