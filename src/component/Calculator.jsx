@@ -13,23 +13,29 @@ function Calculator() {
   const [arrayNumb, setArrayNumb] = useState([]);
 
   const handleClick = (value) => {
-    // console.log("🚀 ~ file: Calculator.jsx:12 ~ handleClick ~ value:", value)
     if (value == "=") {
       calculate(operation);
     } else if (value == "C") {
       clearInput();
     } else {
+      console.log(value)
       updateOperation(value);
     }
   };
   
   const handleKeyboard = (event) => {
-    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","C"];
+    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","C","Enter"];
     let keyPressed = event.key;
 
     if (validChars.includes(keyPressed)) {
-      console.log(keyPressed);
-      setArrayNumb((current) => [...current, keyPressed]);
+
+      if(keyPressed == "Enter"){
+        calculate(operation)
+      }
+      else{
+            console.log(keyPressed);
+            updateOperation(keyPressed);
+      }
     }
   };
 // ----------------------------------------------------------------------------------------------------
@@ -37,24 +43,29 @@ function Calculator() {
 // ----------------------------------------------------------------------------------------------------
 
   useEffect(() => {
-    // Écoutez les événements de clavier lorsque le composant est monté.
     window.addEventListener("keydown", handleKeyboard);
 
-    // Nettoyez l'écouteur d'événements lorsque le composant est démonté.
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
     };
-  }, []);
+  });
 
-  useEffect(() => {
-    console.log(arrayNumb);
 
-    cleanArray(arrayNumb);
-  }, [arrayNumb]);
+
+  // useEffect(() => {
+
+  //   console.log(arrayNumb);
+  //   cleanArray(arrayNumb);
+  // }, [arrayNumb]);
+
 // ----------------------------------------------------------------------------------------------------
 // -------------------------------------USE EFFECT-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
 
+
+// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------Function-----------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
   // fonction pour set l'opération
 
   const updateOperation = (value) => {
@@ -79,14 +90,18 @@ function Calculator() {
     setEaster(false);
   };
 
-  const cleanArray = (value) => {
+// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------Function-----------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
-    let toClean = value;
-    console.log(toClean);
-    // let cleaned = toClean.replace(",", "");
-    // console.log(arrayNumb);
-    // setOperation(cleaned);
-  };
+  // const cleanArray = (value) => {
+
+  //   let toClean = value;
+  //   console.log(toClean);
+  //   // let cleaned = toClean.replace(",", "");
+  //   // console.log(arrayNumb);
+  //   // setOperation(cleaned);
+  // };
 
   return (
     <div className="calculatorDisplay">
