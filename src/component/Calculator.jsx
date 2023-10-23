@@ -24,13 +24,16 @@ function Calculator() {
   };
   
   const handleKeyboard = (event) => {
-    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","C","Enter"];
+    let validChars = ["7","8","9","4","5","6","1","2","3","0","*","+","-","/","c","Enter"];
     let keyPressed = event.key;
 
     if (validChars.includes(keyPressed)) {
 
       if(keyPressed == "Enter"){
         calculate(operation)
+      }
+      else if(keyPressed == "c"){
+        clearInput();
       }
       else{
             console.log(keyPressed);
