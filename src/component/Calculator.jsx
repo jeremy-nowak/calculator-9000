@@ -10,7 +10,6 @@ function Calculator() {
   const [operation, setOperation] = useState("");
   const [result, setResult] = useState(0);
   const [easter, setEaster] = useState(false);
-  const [arrayNumb, setArrayNumb] = useState([]);
 
   const handleClick = (value) => {
     if (value == "=") {
@@ -53,14 +52,6 @@ function Calculator() {
     };
   });
 
-
-
-  // useEffect(() => {
-
-  //   console.log(arrayNumb);
-  //   cleanArray(arrayNumb);
-  // }, [arrayNumb]);
-
 // ----------------------------------------------------------------------------------------------------
 // -------------------------------------USE EFFECT-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
@@ -69,14 +60,12 @@ function Calculator() {
 // ----------------------------------------------------------------------------------------------------
 // ---------------------------------------Function-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
-  // fonction pour set l'opération
 
   const updateOperation = (value) => {
     let newOperation = operation.concat(value);
     setOperation(newOperation);
   };
 
-  // fonction pour calculer
 
   const calculate = (operation) => {
     let tempResult = eval(operation);
@@ -97,14 +86,7 @@ function Calculator() {
 // ---------------------------------------Function-----------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
 
-  // const cleanArray = (value) => {
 
-  //   let toClean = value;
-  //   console.log(toClean);
-  //   // let cleaned = toClean.replace(",", "");
-  //   // console.log(arrayNumb);
-  //   // setOperation(cleaned);
-  // };
 
   return (
     <div className="calculatorDisplay">
